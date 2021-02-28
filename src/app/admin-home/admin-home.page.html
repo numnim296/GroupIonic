@@ -1,0 +1,28 @@
+ <ion-header>
+  <ion-toolbar>
+    <ion-title>Admin BeMyAe</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="_popOver($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let pd of allProduct">
+    <ion-card-header>
+      <img src="https://cf.shopee.co.th/file/aba5f98f993b4ef0aeb90ef7e6e4f34d">
+      <ion-card-title>{{pd.title}}</ion-card-title>
+      <ion-card-subtitle>{{pd.price}}</ion-card-subtitle>
+      
+    </ion-card-header>
+  
+    <ion-card-content>
+     {{pd.description}}
+    </ion-card-content>
+  </ion-card>
+  
+</ion-content>
+
+
