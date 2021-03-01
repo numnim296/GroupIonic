@@ -8,6 +8,7 @@ import { Observable } from 'rxjs';
 import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage';
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
+
 export interface imgFile {
   name: string;
   filepath: string;
@@ -28,10 +29,12 @@ export class EditProductPage implements OnInit {
   getImage: string;
   getType: string;
   getSize: string;
-  IDProduct:String;
+  IDProduct: String;
 
+  ImageUrl:string;
 
-  fileImageEvent:any;
+  fileImageEvent: any;
+
 
   // File upload task 
   fileUploadTask: AngularFireUploadTask;
@@ -60,6 +63,8 @@ export class EditProductPage implements OnInit {
 
 
 
+
+
   constructor
     (public navCtrl: NavController,
       public actroute: ActivatedRoute,
@@ -71,6 +76,7 @@ export class EditProductPage implements OnInit {
     // Define uploaded files collection
     this.filesCollection = afs.collection<imgFile>('imagesCollection');
     this.files = this.filesCollection.valueChanges();
+
 
   }
 
@@ -85,20 +91,18 @@ export class EditProductPage implements OnInit {
     this.getType = this.detailProduct['type'];
     this.getSize = this.detailProduct['size'];
     this.IDProduct = this.detailProduct['id'];
+    this.ImageUrl = this.detailProduct['image'];
+    
 
 
   }
-
   buildImage(event: FileList){
     this.fileImageEvent = event.item(0)
   }
 
   uploadImage() {
       
-    // const file = event.item(0)
-
-    // Image validation
-    if (this.fileImageEvent.type.split('/')[0] !== 'image') { 
+    if ( this.fileImageEvent.type.split('/')[0] !== 'image') { 
       console.log('File type is not supported!')
       return;
     }
@@ -106,16 +110,16 @@ export class EditProductPage implements OnInit {
     this.isFileUploading = true;
     this.isFileUploaded = false;
 
-    this.imgName = this.fileImageEvent.name;
+    this.imgName =  this.fileImageEvent.name;
 
     // Storage path
-    const fileStoragePath = `filesStorage/${new Date().getTime()}_${this.fileImageEvent.name}`;
+    const fileStoragePath = `filesStorage/${new Date().getTime()}_${ this.fileImageEvent.name}`;
 
     // Image reference
     const imageRef = this.afStorage.ref(fileStoragePath);
 
     // File upload task
-    this.fileUploadTask = this.afStorage.upload(fileStoragePath, this.fileImageEvent);
+    this.fileUploadTask = this.afStorage.upload(fileStoragePath,  this.fileImageEvent);
 
     // Show uploading progress
     this.percentageVal = this.fileUploadTask.percentageChanges();
@@ -127,7 +131,7 @@ export class EditProductPage implements OnInit {
         
         this.UploadedImageURL.subscribe(resp=>{
           this.storeFilesFirebase({
-            name: this.fileImageEvent.name,
+            name:  this.fileImageEvent.name,
             filepath: resp,
             size: this.imgSize
           });
@@ -143,24 +147,33 @@ export class EditProductPage implements OnInit {
     )
 }
 
-
 storeFilesFirebase(image: imgFile) {
-    const fileId = this.afs.createId();   
-    this.getImage = fileId 
-    this.filesCollection.doc(fileId).set(image).then(res => {
-      this.updateProduct()
-      
-    }).catch(err => {
-      console.log(err);
-    });
+   
+    const fileId = this.afs.createId();
+    this.getImage = fileId  
+    this.ImageUrl = image['filepath']
+
+    this.updateProduct();
+}
+
+checkImage(){
+  if (this.fileImageEvent === undefined){
+    this.updateProduct()
+  }else{
+    this.uploadImage()
+  }
 }
 
 updateProduct(){
-  // console.log(
-  //   this.getTitle,this.getImage
-  // )
-  let record = {}
-  this.afs.collection('product').add(record); 
+  let newDataProduct = {};
+  newDataProduct['title'] = this.getTitle;
+  newDataProduct['description'] = this.getDescription;
+  newDataProduct['price'] = this.getPrice;
+  newDataProduct['image'] = this.ImageUrl;
+  newDataProduct['type'] = this.getType;
+  newDataProduct['size'] = this.getSize;
+  newDataProduct['company'] = this.getCompany;
+  this.afs.doc('product/' + this.IDProduct).update(newDataProduct)
 }
 
 

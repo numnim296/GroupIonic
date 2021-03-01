@@ -15,16 +15,29 @@
         </ion-card-header>
         <ion-card-content>
           <ion-button color="primary" shape="round" size="medium">
-            <input type="file" (change)="buildImage($event.target.files)" />          
+            <input type="file" (change)="buildImage($event.target.files)" />
           </ion-button>
         </ion-card-content>
       </ion-card>
+  
+      <!-- File upload progress bar -->
+      <div *ngIf="percentageVal | async as percentage">
+        Progress: {{ percentage | number }}%
+        <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
+      </div>
+  
+      <div *ngIf="trackSnapshot | async as snap">
+        File size: {{ snap.totalBytes | formatFileSize }} 
+        
+        Data transfered: {{ snap.bytesTransferred | formatFileSize }}
+      </div>    
+  
+    </div>
+
+    
    
   
     <ion-card-content>
-      <ion-item>
-        <ion-input placeholder="image" [(ngModel)]="getImage"></ion-input>
-      </ion-item>
       <ion-item>
         <ion-input placeholder="title" [(ngModel)]="getTitle"></ion-input>
       </ion-item>
@@ -44,24 +57,12 @@
         <ion-input placeholder="type" [(ngModel)]="getType"></ion-input>
       </ion-item>
       
-      <ion-button expand="block" (click)="uploadImage()">edit</ion-button>
+      <ion-button expand="block" (click)="checkImage()">edit</ion-button>
     </ion-card-content>
 
     
   
-      <!-- File upload progress bar -->
-      <!-- <div *ngIf="percentageVal | async as percentage">
-        Progress: {{ percentage | number }}%
-        <ion-progress-bar value="{{ percentage / 100 }}"></ion-progress-bar>
-      </div>
-  
-      <div *ngIf="trackSnapshot | async as snap">
-        File size: {{ snap.totalBytes | formatFileSize }} 
-        
-        Data transfered: {{ snap.bytesTransferred | formatFileSize }}
-      </div>     -->
-  
-    </div>
+     
   </ion-card>  
 
   

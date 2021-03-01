@@ -15,6 +15,9 @@ import { Router } from "@angular/router";
 export class AdminHomePage implements OnInit {
   allProduct:any;
   dataProduct:any;
+  ImageUrl:any;
+
+  dtoo:string;
 
   constructor(
     public menu: MenuController,
@@ -26,7 +29,9 @@ export class AdminHomePage implements OnInit {
 
   ngOnInit() {
     this.crudapi.readAllData().subscribe(data=>{
+      let dd;
       this.allProduct = data.map(e=>{
+     
         return {
           id:e.payload.doc.id,
           title:e.payload.doc.data()['title'.toString()],
