@@ -24,6 +24,10 @@ const routes: Routes = [
     canActivate:[AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
+  {
+    path: 'edit-product/:pd',
+    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
+  },
 ];
 
 @NgModule({

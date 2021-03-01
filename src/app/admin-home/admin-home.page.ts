@@ -4,6 +4,7 @@ import { MenuController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent }  from 'src/app/components/popover/popover.component'
 import {AngularFirestore} from '@angular/fire/firestore';
+import { Router } from "@angular/router";
 
 
 @Component({
@@ -13,12 +14,14 @@ import {AngularFirestore} from '@angular/fire/firestore';
 })
 export class AdminHomePage implements OnInit {
   allProduct:any;
+  dataProduct:any;
 
   constructor(
     public menu: MenuController,
     private popCtrl: PopoverController,
     private fs:AngularFirestore,
-    private crudapi:crudApi
+    private crudapi:crudApi,
+    public router: Router
     ) { }
 
   ngOnInit() {
@@ -48,6 +51,11 @@ export class AdminHomePage implements OnInit {
     })
 
     return await popOver.present()
+  }
+
+  editProduct(pd:any){
+    let dataProduct = JSON.stringify(pd);
+    this.router.navigate(["edit-product", dataProduct]);
   }
 
 }
