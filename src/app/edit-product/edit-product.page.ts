@@ -9,6 +9,7 @@ import { AngularFireStorage, AngularFireUploadTask } from '@angular/fire/storage
 import { AngularFirestore, AngularFirestoreCollection } from '@angular/fire/firestore';
 
 
+
 export interface imgFile {
   name: string;
   filepath: string;
@@ -98,6 +99,7 @@ export class EditProductPage implements OnInit {
   }
   buildImage(event: FileList){
     this.fileImageEvent = event.item(0)
+    
   }
 
   uploadImage() {
@@ -173,7 +175,11 @@ updateProduct(){
   newDataProduct['type'] = this.getType;
   newDataProduct['size'] = this.getSize;
   newDataProduct['company'] = this.getCompany;
-  this.afs.doc('product/' + this.IDProduct).update(newDataProduct)
+  this.afs.doc('product/' + this.IDProduct).update(newDataProduct).then(data=>{
+    this.navCtrl.navigateRoot("admin-home");
+  }
+    
+  )
 }
 
 
