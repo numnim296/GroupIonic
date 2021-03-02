@@ -124,7 +124,7 @@ export class EditProductPage implements OnInit {
     this.fileUploadTask = this.afStorage.upload(fileStoragePath,  this.fileImageEvent);
 
     // Show uploading progress
-    this.percentageVal = this.fileUploadTask.percentageChanges();
+    // this.percentageVal = this.fileUploadTask.percentageChanges();
     this.trackSnapshot = this.fileUploadTask.snapshotChanges().pipe(
       
       finalize(() => {
