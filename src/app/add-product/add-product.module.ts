@@ -7,6 +7,7 @@ import { IonicModule } from '@ionic/angular';
 import { AddProductPageRoutingModule } from './add-product-routing.module';
 
 import { AddProductPage } from './add-product.page';
+import { FormatFileSizePipe } from './format-file-size.pipe';
 
 @NgModule({
   imports: [
@@ -15,6 +16,6 @@ import { AddProductPage } from './add-product.page';
     IonicModule,
     AddProductPageRoutingModule
   ],
-  declarations: [AddProductPage]
+  declarations: [AddProductPage,FormatFileSizePipe]
 })
 export class AddProductPageModule {}

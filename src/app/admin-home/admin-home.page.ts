@@ -94,6 +94,6 @@ export class AdminHomePage implements OnInit {
     })
   }
   addData(){
-    console.log('add data')
+    this.navCtrl.navigateRoot('add-product')
   }
 }
