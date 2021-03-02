@@ -27,12 +27,14 @@ export class EditProductPage implements OnInit {
   getDescription: string;
   getPrice: number;
   getCompany: string;
-  getImage: string;
+  getImage: any;
+  getImage2: any;
   getType: string;
   getSize: string;
   IDProduct: String;
 
   ImageUrl:string;
+  ImagePreview:any;
 
   fileImageEvent: any;
 
@@ -89,6 +91,7 @@ export class EditProductPage implements OnInit {
     this.getPrice = this.detailProduct['price'];
     this.getCompany = this.detailProduct['company'];
     this.getImage = this.detailProduct['image'];
+    this.getImage2 = this.detailProduct['image'];
     this.getType = this.detailProduct['type'];
     this.getSize = this.detailProduct['size'];
     this.IDProduct = this.detailProduct['id'];
@@ -97,9 +100,20 @@ export class EditProductPage implements OnInit {
 
 
   }
-  buildImage(event: FileList){
-    this.fileImageEvent = event.item(0)
+  // buildImage(event: FileList){
+  //   this.fileImageEvent = event.item(0)
     
+  // }
+  buildImage(event){
+    this.fileImageEvent = event.target.files.item(0)
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+        // this.ImagePreview = event.target.result;
+        this.getImage2 = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }   
   }
 
   uploadImage() {

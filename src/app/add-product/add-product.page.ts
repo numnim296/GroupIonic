@@ -35,6 +35,7 @@ export class AddProductPage implements OnInit {
   IDProduct: String;
 
   ImageUrl:string;
+  ImagePreview:any;
 
   fileImageEvent: any;
 
@@ -101,9 +102,19 @@ export class AddProductPage implements OnInit {
   }
 
 
-  buildImage(event: FileList){
-    this.fileImageEvent = event.item(0)
+  // buildImage(event: FileList){
+  //   this.fileImageEvent = event.item(0)
     
+  // }
+  buildImage(event){
+    this.fileImageEvent = event.target.files.item(0)
+    if (event.target.files && event.target.files[0]) {
+      let reader = new FileReader();
+      reader.onload = (event:any) => {
+        this.ImagePreview = event.target.result;
+      }
+      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+    }   
   }
 
   uploadImage() {
