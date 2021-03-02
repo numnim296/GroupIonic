@@ -20,9 +20,13 @@
   
     <ion-card-content>
      {{pd.description}}
+   
     </ion-card-content>
-    <ion-button (click)="editProduct(pd)" color="warning">edit</ion-button>
-    <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
+    <div class="ion-text-end">
+      <ion-button  (click)="editProduct(pd)" color="warning">edit</ion-button>
+      <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
+    </div>
+
 
   </ion-card>
   <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
