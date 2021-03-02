@@ -13,4 +13,8 @@ export class crudApi{
 
         return this.fs.collection('product').snapshotChanges();
     }
+
+    deleteProduct(id){
+        return this.fs.doc('product/' + id).delete();
+    }
 }

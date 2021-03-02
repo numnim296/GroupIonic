@@ -28,6 +28,10 @@ const routes: Routes = [
     path: 'edit-product/:pd',
     loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
   },
+  {
+    path: 'add-product',
+    loadChildren: () => import('./add-product/add-product.module').then( m => m.AddProductPageModule)
+  },
 ];
 
 @NgModule({

@@ -5,6 +5,11 @@ import { PopoverController } from '@ionic/angular';
 import { PopoverComponent }  from 'src/app/components/popover/popover.component'
 import {AngularFirestore} from '@angular/fire/firestore';
 import { Router } from "@angular/router";
+import {
+  ToastController,
+  LoadingController,
+  NavController,
+} from "@ionic/angular";
 
 
 @Component({
@@ -24,7 +29,10 @@ export class AdminHomePage implements OnInit {
     private popCtrl: PopoverController,
     private fs:AngularFirestore,
     private crudapi:crudApi,
-    public router: Router
+    public router: Router,
+    private toastCtrl: ToastController,
+    private loadingCtrl: LoadingController,
+    private navCtrl: NavController,
     ) { }
 
   ngOnInit() {
@@ -58,9 +66,34 @@ export class AdminHomePage implements OnInit {
     return await popOver.present()
   }
 
+  // showToast() {
+  //   this.toastCtrl
+  //     .create({
+  //       message: "please wait",
+  //       duration: 2000
+  //     })
+  //     .then(toastData => toastData.present()).then(d=>{
+  //       console.log("toat finish")
+  //     }
+        
+  //     );
+  // }
+
+
   editProduct(pd:any){
     let dataProduct = JSON.stringify(pd);
     this.router.navigate(["edit-product", dataProduct]);
   }
 
+  deleteProduct(dtPd){
+    this.crudapi.deleteProduct(dtPd['id']).then(res=>{
+      console.log('delete success')
+    }      
+    ).catch(err=>{
+      console.error(err)
+    })
+  }
+  addData(){
+    console.log('add data')
+  }
 }
