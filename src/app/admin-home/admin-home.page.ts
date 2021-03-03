@@ -52,7 +52,6 @@ export class AdminHomePage implements OnInit {
         }
         
       })
-      console.log(this.allProduct);
     })
   }
   
