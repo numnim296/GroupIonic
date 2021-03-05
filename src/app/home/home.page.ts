@@ -18,6 +18,8 @@ export class HomePage implements OnInit {
   findPD:any;
   showFind:any;
   showYes:string="no";
+
+  showLGF:string="yes"
   constructor(private popCtrl: PopoverController,private afs: AngularFirestore,private crudapi:crudApi,) {}
 
   ngOnInit(){
@@ -52,7 +54,10 @@ export class HomePage implements OnInit {
   }
 
   findProduct(e){
+    this.showLGF = undefined;
     if(e.target.value == ""){
+      this.findPD = this.allProduct;
+      this.showYes = "have";
     }
 
     else{

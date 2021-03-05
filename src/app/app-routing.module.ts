@@ -26,11 +26,15 @@ const routes: Routes = [
   },
   {
     path: 'edit-product/:pd',
-    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule)
+    loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule),
+    canActivate:[AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
     path: 'add-product',
-    loadChildren: () => import('./add-product/add-product.module').then( m => m.AddProductPageModule)
+    loadChildren: () => import('./add-product/add-product.module').then( m => m.AddProductPageModule),
+    canActivate:[AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
 ];
 

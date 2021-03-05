@@ -1,7 +1,7 @@
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Home
+      Be My Ae
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="_popOver($event)">
@@ -13,28 +13,51 @@
 
 <ion-content [fullscreen]="true">
 <ion-item>
-   <ion-input placeholder="ชื่อผลิตภัณฑ์" [(ngModel)]="pd" (input)="findProduct($event)" name="pd" type="text"></ion-input>
+   <ion-input placeholder="กรอกชื่อผลิตภัณฑ์" [(ngModel)]="pd" (input)="findProduct($event)" name="pd" type="text"></ion-input>
 </ion-item>
+<div  *ngIf="showLGF"><br><br><br><br><br><br><br><br></div>
+
+<div  *ngIf="!showYes"><br><br><br><br><br><br><br><br></div>
+
+  <ion-card *ngIf="showLGF">
+    <div text-center>
+      <center>
+        <br><br>
+        <img src="https://www.flaticon.com/svg/vstatic/svg/3126/3126494.svg?token=exp=1614920857~hmac=1c535bc26333ea2d698da01c5b539eed" width="100" height="100"><br><br>
+          ค้นหาสินค้าในคลัง
+          <br><br>
+      </center>
+    </div>
+  </ion-card>
 
 
-<ion-item *ngIf="!showYes">
-  ไม่พบ
-</ion-item>
 
-<ion-card *ngIf="showYes" >
+  <ion-card *ngIf="!showYes">
+  <div text-center>
+    <center>
+      <br><br>
+      <img src="https://www.flaticon.com/svg/vstatic/svg/463/463612.svg?token=exp=1614920252~hmac=cf746f80bfa866ec238b56854916b4ae" width="100" height="100"><br><br>
+        ไม่พบสินค้านี้ในคลัง
+        <br><br>
+    </center>
+  </div>
+</ion-card>
+
+
+<div *ngIf="showYes" >
   <ion-card *ngFor="let pd of showFind">
     <ion-card-header>
     <img src={{pd.image}}>
     <ion-card-title>{{pd.title}}</ion-card-title>
-    <ion-card-subtitle>{{pd.price}}</ion-card-subtitle>
-    
+    <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
+    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
   </ion-card-header>  
   <ion-card-content>
-   {{pd.description}}   
+    {{pd.description}}
   </ion-card-content>
   </ion-card>
-  
 
-</ion-card>
+
+</div>
  
 </ion-content>

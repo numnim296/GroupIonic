@@ -87,5 +87,9 @@ export class LoginPage implements OnInit {
       })
       .then(toastData => toastData.present());
   }
+  back(){
+
+    this.navCtrl.navigateRoot('home')
+  }
 
 }

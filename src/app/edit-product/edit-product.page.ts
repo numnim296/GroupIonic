@@ -196,5 +196,9 @@ updateProduct(){
   )
 }
 
+back(){
+  this.navCtrl.pop()
+}
+
 
 }

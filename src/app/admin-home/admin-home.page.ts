@@ -23,6 +23,11 @@ export class AdminHomePage implements OnInit {
   ImageUrl:any;
 
   dtoo:string;
+  pd:string;
+  findPD:any;
+  showFind:any;
+  showYes:string="no";
+  showAll:string="yes";
 
   constructor(
     public menu: MenuController,
@@ -94,5 +99,30 @@ export class AdminHomePage implements OnInit {
   }
   addData(){
     this.navCtrl.navigateRoot('add-product')
+  }
+
+  findProduct(e){
+    if(e.target.value == ""){
+
+      this.findPD = this.allProduct;
+      this.showYes = "have";
+      this.showAll = undefined;
+    }
+
+    else{
+        this.showAll = undefined;
+       this.findPD = this.allProduct.filter(x => x.title.includes(e.target.value) == true);
+        if(this.findPD.length == 0){
+          this.showFind = undefined;
+          this.showYes =  undefined;
+        }else{
+          this.showFind = this.findPD
+          this.showYes = "have";
+        }
+        
+    
+
+
+    }
   }
 }
