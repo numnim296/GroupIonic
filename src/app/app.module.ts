@@ -25,7 +25,6 @@ import { AngularFireStorageModule } from '@angular/fire/storage';
     IonicModule.forRoot(), 
     AppRoutingModule, 
     AngularFireAuthGuardModule,
-
     AngularFireModule.initializeApp(environment.firebaseConfig),
     AngularFirestoreModule,
     AngularFireDatabaseModule,

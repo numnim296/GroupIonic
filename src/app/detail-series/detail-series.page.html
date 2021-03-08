@@ -1,0 +1,32 @@
+<ion-header>
+  <ion-toolbar>
+    <ion-title>detailSeries</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="_popOver($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  
+  <ion-card>
+    <ion-card-header>
+      <img src={{this.data.image}}>
+      <ion-card-title>ชื่อเรื่อง {{this.data.title}}</ion-card-title>
+    </ion-card-header>
+    <ion-card-content>
+      <p>ช่อง: {{this.data.channel}}</p>
+      <p>แนว: {{this.data.type}}</p>
+      <p>วัน-เวลาออนแอร์: {{this.data.sday}} - {{this.data.eday}}</p>
+      <p>ช่วงเวลาออนแอร์ : {{this.data.time}}</p>
+      <p>นักแสดง : {{this.data.actor}}</p>
+      <p>เรื่องย่อ: {{this.data.description}}</p>
+    </ion-card-content>
+  </ion-card>
+  <ion-button expand="block" (click)='back()'>
+    กลับ
+  </ion-button>
+
+</ion-content>

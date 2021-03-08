@@ -12,6 +12,9 @@ export class crudApi{
     readAllProduct(){
         return this.fs.collection('product').snapshotChanges();
     }
+    readAllSeries(){
+        return this.fs.collection('k-drama').snapshotChanges();
+    }
 
     
 }

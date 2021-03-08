@@ -1,4 +1,4 @@
-<ion-header [translucent]="true">
+<!-- <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
       Be My Ae
@@ -60,4 +60,31 @@
 
 </div>
  
+</ion-content> -->
+
+
+<ion-header [translucent]="true">
+  <ion-toolbar>
+    <ion-title>
+      Kseries
+    </ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="_popOver($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+  <div text-center>
+    <center>
+      <ion-button color="secondary" shape="round" (click)="buttonClick('drama')">  drama  </ion-button>
+      <ion-button color="secondary" shape="round" (click)="buttonClick('action')">  action  </ion-button><br>
+      <ion-button color="secondary" shape="round" (click)="buttonClick('romance')">romance</ion-button>
+      <ion-button color="secondary" shape="round" (click)="buttonClick('comedy')">comedy</ion-button>
+    </center>   
+  </div>
+  
 </ion-content>
