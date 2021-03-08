@@ -34,6 +34,18 @@ export class AddProductPage implements OnInit {
   getSize: string;
   IDProduct: String;
 
+  eday:string;
+  ep:number;
+  sday:string;
+  year:string;
+  actor:string;
+  channel:string;
+  time:string
+
+  typeSelectValue:string;
+
+  yearSelectValue:string;
+
   ImageUrl:string;
   ImagePreview:any;
 
@@ -185,15 +197,16 @@ checkImage(){
   let newDataProduct = {};
   newDataProduct['title'] = this.getTitle;
   newDataProduct['description'] = this.getDescription;
-  newDataProduct['price'] = this.getPrice;
+  newDataProduct['type'] = this.typeSelectValue;
   newDataProduct['image'] = this.ImageUrl;
-  newDataProduct['type'] = this.getType;
-  newDataProduct['size'] = this.getSize;
-  newDataProduct['company'] = this.getCompany;
-
-  
-
-  this.afs.collection('product').add(newDataProduct).then(res=>{
+  newDataProduct['ep'] = this.ep;
+  newDataProduct['eday'] = this.eday;
+  newDataProduct['sday'] = this.sday;
+  newDataProduct['actor'] = this.actor;
+  newDataProduct['time'] = this.time;
+  newDataProduct['channel'] = this.channel;
+  newDataProduct['year'] = this.yearSelectValue;
+  this.afs.collection('k-drama').add(newDataProduct).then(res=>{
     console.log("add success")
     this.navCtrl.navigateRoot("admin-home");
   }).catch(err=>{
@@ -268,5 +281,11 @@ showToast(message: string) {
     .then(toastData => toastData.present());
 }
 
+onChangeType(e){
+  
+}
+onChangeYear(e){
+  
+}
 
 }

@@ -29,6 +29,8 @@ export class AdminHomePage implements OnInit {
   showYes:string="no";
   showAll:string="yes";
 
+  allSeries:any;
+
   constructor(
     public menu: MenuController,
     private popCtrl: PopoverController,
@@ -41,23 +43,27 @@ export class AdminHomePage implements OnInit {
     ) { }
 
   ngOnInit() {
-    this.crudapi.readAllData().subscribe(data=>{
-      let dd;
-      this.allProduct = data.map(e=>{
-     
+    this.crudapi.readAllSeries().subscribe(data=>{
+      this.allSeries = data.map(e=>{
         return {
           id:e.payload.doc.id,
           title:e.payload.doc.data()['title'.toString()],
           description:e.payload.doc.data()['description'.toString()],
-          price:e.payload.doc.data()['price'.toString()],
-          size:e.payload.doc.data()['size'.toString()],
-          company:e.payload.doc.data()['company'.toString()],
+          year:e.payload.doc.data()['year'.toString()],
+          ep:e.payload.doc.data()['ep'.toString()],
+          channel:e.payload.doc.data()['channel'.toString()],
           type:e.payload.doc.data()['type'.toString()],
           image:e.payload.doc.data()['image'.toString()],
+          actor:e.payload.doc.data()['actor'.toString()],
+          sday:e.payload.doc.data()['sday'.toString()],
+          eday:e.payload.doc.data()['eday'.toString()],
+          end:e.payload.doc.data()['end'.toString()],
+          time:e.payload.doc.data()['time'.toString()],
         }
         
       })
     })
+    
   }
   
   async _popOver(ev: any) {
@@ -70,27 +76,13 @@ export class AdminHomePage implements OnInit {
     return await popOver.present()
   }
 
-  // showToast() {
-  //   this.toastCtrl
-  //     .create({
-  //       message: "please wait",
-  //       duration: 2000
-  //     })
-  //     .then(toastData => toastData.present()).then(d=>{
-  //       console.log("toat finish")
-  //     }
-        
-  //     );
-  // }
-
-
-  editProduct(pd:any){
-    let dataProduct = JSON.stringify(pd);
-    this.router.navigate(["edit-product", dataProduct]);
+  editSeries(sr:any){
+    let data = JSON.stringify(sr);
+    this.router.navigate(["edit-series", data]);
   }
 
   deleteProduct(dtPd){
-    this.crudapi.deleteProduct(dtPd['id']).then(res=>{
+    this.crudapi.deleteSeries(dtPd['id']).then(res=>{
       console.log('delete success')
     }      
     ).catch(err=>{
@@ -98,7 +90,7 @@ export class AdminHomePage implements OnInit {
     })
   }
   addData(){
-    this.navCtrl.navigateRoot('add-product')
+    this.navCtrl.navigateRoot('add-series')
   }
 
   findProduct(e){

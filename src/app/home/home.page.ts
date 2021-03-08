@@ -14,13 +14,6 @@ import { Router } from "@angular/router";
 })
 export class HomePage implements OnInit {
 
-  // allProduct:any;
-  // pd:string;
-  // findPD:any;
-  // showFind:any;
-  // showYes:string="no";
-
-  // showLGF:string="yes"
   allSeries:any;
   allSelectType:any;
 
@@ -43,10 +36,10 @@ export class HomePage implements OnInit {
           sday:e.payload.doc.data()['sday'.toString()],
           eday:e.payload.doc.data()['eday'.toString()],
           end:e.payload.doc.data()['end'.toString()],
+          time:e.payload.doc.data()['time'.toString()],
         }
         
       })
-      console.log('home',this.allSeries);
     })
   }
 
@@ -60,22 +53,7 @@ export class HomePage implements OnInit {
     return await popOver.present()
   }
 
-  // findProduct(e){
-  //   this.showLGF = undefined;
-  //   if(e.target.value == ""){
-  //     this.findPD = this.allProduct;
-  //     this.showYes = "have";
-  //   }
 
-  //   else{
-  //      this.findPD = this.allProduct.filter(x => x.title.includes(e.target.value) == true);
-  //       if(this.findPD.length == 0){
-  //         this.showFind = undefined;
-  //         this.showYes =  undefined;
-  //       }else{
-  //         this.showFind = this.findPD
-  //         this.showYes = "have";
-  //       }
 
   buttonClick(data){
     if(data=="drama"){
@@ -105,8 +83,5 @@ export class HomePage implements OnInit {
         
     
 
-
-  //   }
-  // }
 
 }

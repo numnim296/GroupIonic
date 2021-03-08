@@ -33,6 +33,19 @@ export class EditProductPage implements OnInit {
   getSize: string;
   IDProduct: String;
 
+  eday:string;
+  ep:number;
+  sday:string;
+  year:string;
+  actor:string;
+  channel:string;
+  time:string
+
+  typeSelectValue:string;
+
+  yearSelectValue:string;
+
+
   ImageUrl:string;
   ImagePreview:any;
 
@@ -88,14 +101,21 @@ export class EditProductPage implements OnInit {
     this.detailProduct = JSON.parse(dataRev);
     this.getTitle = this.detailProduct['title'];
     this.getDescription = this.detailProduct['description'];
-    this.getPrice = this.detailProduct['price'];
-    this.getCompany = this.detailProduct['company'];
+    // this.getPrice = this.detailProduct['price'];
+    // this.getCompany = this.detailProduct['company'];
     this.getImage = this.detailProduct['image'];
     this.getImage2 = this.detailProduct['image'];
     this.getType = this.detailProduct['type'];
-    this.getSize = this.detailProduct['size'];
+    // this.getSize = this.detailProduct['size'];
     this.IDProduct = this.detailProduct['id'];
     this.ImageUrl = this.detailProduct['image'];
+    this.year = this.detailProduct['year'];
+    this.sday = this.detailProduct['sday'];
+    this.eday = this.detailProduct['eday'];
+    this.ep = this.detailProduct['ep'];
+    this.actor = this.detailProduct['actor'];
+    this.time= this.detailProduct['time'];
+    this.channel= this.detailProduct['channel'];
     
 
 
@@ -184,12 +204,16 @@ updateProduct(){
   let newDataProduct = {};
   newDataProduct['title'] = this.getTitle;
   newDataProduct['description'] = this.getDescription;
-  newDataProduct['price'] = this.getPrice;
+  newDataProduct['type'] = this.typeSelectValue;
   newDataProduct['image'] = this.ImageUrl;
-  newDataProduct['type'] = this.getType;
-  newDataProduct['size'] = this.getSize;
-  newDataProduct['company'] = this.getCompany;
-  this.afs.doc('product/' + this.IDProduct).update(newDataProduct).then(data=>{
+  newDataProduct['ep'] = this.ep;
+  newDataProduct['eday'] = this.eday;
+  newDataProduct['sday'] = this.sday;
+  newDataProduct['actor'] = this.actor;
+  newDataProduct['time'] = this.time;
+  newDataProduct['channel'] = this.channel;
+  newDataProduct['year'] = this.yearSelectValue;
+  this.afs.doc('k-drama/' + this.IDProduct).update(newDataProduct).then(data=>{
     this.navCtrl.navigateRoot("admin-home");
   }
     
@@ -198,6 +222,14 @@ updateProduct(){
 
 back(){
   this.navCtrl.pop()
+}
+onChangeType(e){
+  console.log("type => ",e);
+  
+}
+onChangeYear(e){
+  console.log('year => ',e);
+  
 }
 
 

@@ -41,22 +41,59 @@
 
     <ion-card-content>
       <ion-item>
-        <ion-input placeholder="title" [(ngModel)]="getTitle"></ion-input>
+        ชื่อเรื่อง: <ion-input  [(ngModel)]="getTitle"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-textarea rows="6" placeholder="description" [(ngModel)]="getDescription"></ion-textarea>
+        เรื่องย่อ: <ion-textarea rows="6"  [(ngModel)]="getDescription"></ion-textarea>
       </ion-item>
       <ion-item>
-        <ion-input type="number" placeholder="price" [(ngModel)]="getPrice"></ion-input>
+        จำนวนตอน: <ion-input type="number" placeholder="ep" [(ngModel)]="ep"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="size" [(ngModel)]="getSize"></ion-input>
+        วันเริ่มออกอากาศ: <ion-input  [(ngModel)]="sday"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="company" [(ngModel)]="getCompany"></ion-input>
+        วันหยุดออกอากาศ: <ion-input  [(ngModel)]="eday"></ion-input>
+      </ion-item>
+      <ion-list>
+        <ion-item>
+          <ion-label>แนว</ion-label>
+          <ion-select #newSelect [(ngModel)]="typeSelectValue" (ionChange)="onChangeType(typeSelectValue)">
+            <ion-select-option value="drama" checked="true">drama</ion-select-option>
+            <ion-select-option value="romance">romance</ion-select-option>
+            <ion-select-option value="action">action</ion-select-option>
+            <ion-select-option value="comedy">comedy</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-list>
+        <ion-item>
+          <ion-label>ปีที่ออกอากาศ</ion-label>
+          <ion-select #newSelect [(ngModel)]="yearSelectValue" (ionChange)="onChangeYear(yearSelectValue)">
+            <ion-select-option value="2009" checked="true">2009</ion-select-option>
+            <ion-select-option value="2010">2010</ion-select-option>
+            <ion-select-option value="2011">2011</ion-select-option>
+            <ion-select-option value="2012">2012</ion-select-option>
+            <ion-select-option value="2013">2013</ion-select-option>
+            <ion-select-option value="2014">2014</ion-select-option>
+            <ion-select-option value="2015">2015</ion-select-option>
+            <ion-select-option value="2016">2016</ion-select-option>
+            <ion-select-option value="2017">2017</ion-select-option>
+            <ion-select-option value="2018">2018</ion-select-option>
+            <ion-select-option value="2019">2019</ion-select-option>
+            <ion-select-option value="2020">2020</ion-select-option>
+            <ion-select-option value="2021">2021</ion-select-option>
+          </ion-select>
+        </ion-item>
+      </ion-list>
+      <ion-item>
+        นักแสดง: <ion-input  [(ngModel)]="actor"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input placeholder="type" [(ngModel)]="getType"></ion-input>
+        ช่อง: <ion-input [(ngModel)]="channel"></ion-input>
+      </ion-item>
+      <ion-item>
+        ช่วงเวลาออนแอร์: <ion-input  [(ngModel)]="time"></ion-input>
       </ion-item>
 
       <ion-button expand="block" (click)="beforeAddProduct()">add</ion-button>

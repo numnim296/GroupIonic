@@ -1,4 +1,4 @@
- <ion-header>
+ <!-- <ion-header>
   <ion-toolbar>
     <ion-title>Admin BeMyAe</ion-title>
     <ion-buttons slot="end">
@@ -79,23 +79,6 @@
 </ion-card>
 
 
-
-  <!-- <ion-card *ngFor="let pd of allProduct">
-    <ion-card-header>
-      <img src={{pd.image}}>
-      <ion-card-title>{{pd.title}}</ion-card-title>
-      <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
-    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
-    </ion-card-header>  
-    <ion-card-content>
-     {{pd.description}}   
-    </ion-card-content>
-    <div class="ion-text-end">
-      <ion-button  (click)="editProduct(pd)" color="warning">edit</ion-button>
-      <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
-    </div>
-
-  </ion-card> -->
   <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addData()"> 
       <ion-icon name="add"></ion-icon>
@@ -104,4 +87,41 @@
   
 </ion-content>
 
+ -->
 
+
+ <ion-header>
+  <ion-toolbar>
+    <ion-title>Admin BeMyAe</ion-title>
+    <ion-buttons slot="end">
+      <ion-button (click)="_popOver($event)">
+        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
+      </ion-button>
+    </ion-buttons>
+  </ion-toolbar>
+</ion-header>
+
+<ion-content>
+  <ion-card *ngFor="let sr of allSeries">
+    <ion-card-header>
+    <img src={{sr.image}}>
+    <ion-card-title>{{sr.title}}</ion-card-title>    
+  </ion-card-header>  
+  <ion-card-content>
+    <p>วันออกกาศ {{sr.sday}} - {{sr.eday}}</p>
+    <p>ช่วงเวลา {{sr.time}}</p>
+    <p>ช่อง {{sr.channel}}</p>
+    <p>{{sr.description}}</p>
+  </ion-card-content>
+  <div class="ion-text-end">
+    <ion-button  (click)="editSeries(sr)" color="warning">edit</ion-button>
+    <ion-button (click)="deleteProduct(sr)"  color="danger">delete</ion-button>
+  </div>
+
+  </ion-card>
+  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+    <ion-fab-button (click)="addData()"> 
+      <ion-icon name="add"></ion-icon>
+    </ion-fab-button>
+  </ion-fab>
+</ion-content>

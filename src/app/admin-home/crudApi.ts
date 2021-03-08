@@ -9,12 +9,10 @@ export class crudApi{
     
     constructor(private fs:AngularFirestore){}
 
-    readAllData(){
-
-        return this.fs.collection('product').snapshotChanges();
+    readAllSeries(){
+        return this.fs.collection('k-drama').snapshotChanges();
     }
-
-    deleteProduct(id){
-        return this.fs.doc('product/' + id).delete();
+    deleteSeries(id){
+        return this.fs.doc('k-drama/' + id).delete();
     }
 }

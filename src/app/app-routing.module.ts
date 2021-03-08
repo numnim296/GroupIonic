@@ -25,13 +25,13 @@ const routes: Routes = [
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'edit-product/:pd',
+    path: 'edit-series/:pd',
     loadChildren: () => import('./edit-product/edit-product.module').then( m => m.EditProductPageModule),
     canActivate:[AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
   {
-    path: 'add-product',
+    path: 'add-series',
     loadChildren: () => import('./add-product/add-product.module').then( m => m.AddProductPageModule),
     canActivate:[AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
@@ -44,6 +44,7 @@ const routes: Routes = [
     path: 'detail-series/:detail',
     loadChildren: () => import('./detail-series/detail-series.module').then( m => m.DetailSeriesPageModule)
   },
+ 
 ];
 
 @NgModule({
