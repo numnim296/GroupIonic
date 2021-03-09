@@ -52,26 +52,20 @@ export class AddProductPage implements OnInit {
   fileImageEvent: any;
 
 
-  // File upload task 
   fileUploadTask: AngularFireUploadTask;
 
-  // Upload progress
   percentageVal: Observable<number>;
 
-  // Track file uploading with snapshot
+ 
   trackSnapshot: Observable<any>;
 
-  // Uploaded File URL
   UploadedImageURL: Observable<string>;
 
-  // Uploaded image collection
   files: Observable<imgFile[]>;
 
-  // Image specifications
   imgName: string;
   imgSize: number;
 
-  // File uploading status
   isFileUploading: boolean;
   isFileUploaded: boolean;
 
@@ -95,7 +89,6 @@ export class AddProductPage implements OnInit {
       this.isFileUploading = false;
     this.isFileUploaded = false;
 
-    // Define uploaded files collection
     this.filesCollection = afs.collection<imgFile>('imagesCollection');
     this.files = this.filesCollection.valueChanges();
     }
@@ -114,10 +107,6 @@ export class AddProductPage implements OnInit {
   }
 
 
-  // buildImage(event: FileList){
-  //   this.fileImageEvent = event.item(0)
-    
-  // }
   buildImage(event){
     this.fileImageEvent = event.target.files.item(0)
     if (event.target.files && event.target.files[0]) {
@@ -125,7 +114,7 @@ export class AddProductPage implements OnInit {
       reader.onload = (event:any) => {
         this.ImagePreview = event.target.result;
       }
-      reader.readAsDataURL(event.target.files[0]);  // to trigger onload
+      reader.readAsDataURL(event.target.files[0]);  
     }   
   }
 
@@ -141,21 +130,17 @@ export class AddProductPage implements OnInit {
 
     this.imgName =  this.fileImageEvent.name;
 
-    // Storage path
+
     const fileStoragePath = `filesStorage/${new Date().getTime()}_${ this.fileImageEvent.name}`;
 
-    // Image reference
     const imageRef = this.afStorage.ref(fileStoragePath);
 
-    // File upload task
     this.fileUploadTask = this.afStorage.upload(fileStoragePath,  this.fileImageEvent);
 
-    // Show uploading progress
-    // this.percentageVal = this.fileUploadTask.percentageChanges();
     this.trackSnapshot = this.fileUploadTask.snapshotChanges().pipe(
       
       finalize(() => {
-        // Retreive uploaded image storage path
+       
         this.UploadedImageURL = imageRef.getDownloadURL();
         
         this.UploadedImageURL.subscribe(resp=>{
@@ -229,41 +214,35 @@ beforeAddProduct(){
 
 formValidation() {
   if (!this.getTitle) {
-    // show toast message
     this.showToast("Enter title");
     return false;
   }
 
   if (!this.getCompany) {
-    // show toast message
     this.showToast("Enter company");
     return false;
   }
   if (!this.getPrice) {
-    // show toast message
     this.showToast("Enter price");
     return false;
   }
   if (!this.getDescription
     ) {
-    // show toast message
     this.showToast("Enter desciption");
     return false;
   }
   if (!this.getSize
     ) {
-    // show toast message
     this.showToast("Enter size");
     return false;
   }
   if (!this.getType) {
-    // show toast message
     this.showToast("Enter type");
     return false;
   }
   
   if (!this.fileImageEvent) {
-    // show toast message
+
     this.showToast("Enter image");
     return false;
   }

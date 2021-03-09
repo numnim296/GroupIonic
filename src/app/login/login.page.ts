@@ -27,48 +27,35 @@ export class LoginPage implements OnInit {
 
   ngOnInit() {
   }
-  // Login(){
-  //   console.log(`${this.getUser} ${this.getPassword}`)
-  // }
 
   async Login() {
-    // console.log(user);
 
     if (this.formValidation()) {
-      // console.log("ready to submit");
-
-      // show loader
       let loader = await this.loadingCtrl.create({
         message: "กรุณารอสักครู่..."
       });
       loader.present();
 
       try {
-        // login user with email and password
         await this.afAuth.signInWithEmailAndPassword(this.getUser, this.getPassword)
           .then(data => {
-            // redirect to home page
             this.navCtrl.navigateRoot("admin-select");
           })
           .catch();
       } catch (e) {
         this.showToast(e);
       }
-
-      // dismis loader
       loader.dismiss();
     }
   }
 
   formValidation() {
     if (!this.getUser) {
-      // show toast message
       this.showToast("Enter email");
       return false;
     }
 
     if (!this.getPassword) {
-      // show toast message
       this.showToast("Enter password");
       return false;
     }

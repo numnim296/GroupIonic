@@ -51,31 +51,15 @@ export class EditProductPage implements OnInit {
   ImagePreview:any;
 
   fileImageEvent: any;
-
-
-  // File upload task 
   fileUploadTask: AngularFireUploadTask;
-
-  // Upload progress
   percentageVal: Observable<number>;
-
-  // Track file uploading with snapshot
   trackSnapshot: Observable<any>;
-
-  // Uploaded File URL
   UploadedImageURL: Observable<string>;
-
-  // Uploaded image collection
   files: Observable<imgFile[]>;
-
-  // Image specifications
   imgName: string;
   imgSize: number;
-
-  // File uploading status
   isFileUploading: boolean;
   isFileUploaded: boolean;
-
   private filesCollection: AngularFirestoreCollection<imgFile>;
 
 
@@ -90,8 +74,6 @@ export class EditProductPage implements OnInit {
       public router: Router,) {
     this.isFileUploading = false;
     this.isFileUploaded = false;
-
-    // Define uploaded files collection
     this.filesCollection = afs.collection<imgFile>('imagesCollection');
     this.files = this.filesCollection.valueChanges();
 
@@ -124,16 +106,11 @@ export class EditProductPage implements OnInit {
 
 
   }
-  // buildImage(event: FileList){
-  //   this.fileImageEvent = event.item(0)
-    
-  // }
   buildImage(event){
     this.fileImageEvent = event.target.files.item(0)
     if (event.target.files && event.target.files[0]) {
       let reader = new FileReader();
       reader.onload = (event:any) => {
-        // this.ImagePreview = event.target.result;
         this.getImage2 = event.target.result;
       }
       reader.readAsDataURL(event.target.files[0]);  // to trigger onload
@@ -152,21 +129,15 @@ export class EditProductPage implements OnInit {
 
     this.imgName =  this.fileImageEvent.name;
 
-    // Storage path
     const fileStoragePath = `filesStorage/${new Date().getTime()}_${ this.fileImageEvent.name}`;
 
-    // Image reference
     const imageRef = this.afStorage.ref(fileStoragePath);
 
-    // File upload task
     this.fileUploadTask = this.afStorage.upload(fileStoragePath,  this.fileImageEvent);
 
-    // Show uploading progress
-    // this.percentageVal = this.fileUploadTask.percentageChanges();
     this.trackSnapshot = this.fileUploadTask.snapshotChanges().pipe(
       
       finalize(() => {
-        // Retreive uploaded image storage path
         this.UploadedImageURL = imageRef.getDownloadURL();
         
         this.UploadedImageURL.subscribe(resp=>{
