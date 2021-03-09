@@ -288,4 +288,9 @@ onChangeYear(e){
   
 }
 
+
+back(){
+  this.navCtrl.navigateRoot("admin-home")
+}
+
 }

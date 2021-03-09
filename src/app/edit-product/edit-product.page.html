@@ -1,6 +1,6 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>editProduct</ion-title>
+    <ion-title><img width="100" height="50" src="https://firebasestorage.googleapis.com/v0/b/bemyae-ec94f.appspot.com/o/Screen%20Shot%202564-03-09%20at%2018.02.19.png?alt=media&token=6506097b-58d7-4667-bc48-76c9871e41eb"></ion-title>
   </ion-toolbar>
 </ion-header>
 
@@ -13,7 +13,7 @@
           <img *ngIf="getImage2" [src]="getImage2" />
         </ion-card-header>
         <ion-card-content>
-          <ion-button color="primary" shape="round" size="medium">
+          <ion-button color="tertiary" shape="round" size="medium">
             <span>Select Image</span>
             <input id="uploadBtn2" type="file" class="upload" (change)="buildImage($event)" />
           </ion-button>
@@ -23,7 +23,6 @@
 
       <div style="display: none;" *ngIf="trackSnapshot | async as snap">
         File size: {{ snap.totalBytes | formatFileSize }}
-
         Data transfered: {{ snap.bytesTransferred | formatFileSize }}
       </div>
 
@@ -89,11 +88,9 @@
         ช่วงเวลาออนแอร์: <ion-input placeholder="ช่วงเวลาออนแอร์" [(ngModel)]="time"></ion-input>
       </ion-item>
       
-      <ion-button expand="block" (click)="checkImage()">edit</ion-button>
-      <ion-button expand="block" color="medium" (click)="back()">back</ion-button>
+      <ion-button expand="block" color="tertiary" (click)="checkImage()">แก้ไข</ion-button>
+      <ion-button expand="block" color="medium" (click)="back()">กลับ</ion-button>
     </ion-card-content>
-
-
 
 
   </ion-card>

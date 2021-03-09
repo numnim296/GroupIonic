@@ -1,72 +1,8 @@
-<!-- <ion-header [translucent]="true">
-  <ion-toolbar>
-    <ion-title>
-      Be My Ae
-    </ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="_popOver($event)">
-        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content [fullscreen]="true">
-<ion-item>
-   <ion-input placeholder="กรอกชื่อผลิตภัณฑ์" [(ngModel)]="pd" (input)="findProduct($event)" name="pd" type="text"></ion-input>
-</ion-item>
-<div  *ngIf="showLGF"><br><br><br><br><br><br><br><br></div>
-
-<div  *ngIf="!showYes"><br><br><br><br><br><br><br><br></div>
-
-  <ion-card *ngIf="showLGF">
-    <div text-center>
-      <center>
-        <br><br>
-        <img src="https://www.flaticon.com/svg/vstatic/svg/3126/3126494.svg?token=exp=1614920857~hmac=1c535bc26333ea2d698da01c5b539eed" width="100" height="100"><br><br>
-          ค้นหาสินค้าในคลัง
-          <br><br>
-      </center>
-    </div>
-  </ion-card>
-
-
-
-  <ion-card *ngIf="!showYes">
-  <div text-center>
-    <center>
-      <br><br>
-      <img src="https://www.flaticon.com/svg/vstatic/svg/463/463612.svg?token=exp=1614920252~hmac=cf746f80bfa866ec238b56854916b4ae" width="100" height="100"><br><br>
-        ไม่พบสินค้านี้ในคลัง
-        <br><br>
-    </center>
-  </div>
-</ion-card>
-
-
-<div *ngIf="showYes" >
-  <ion-card *ngFor="let pd of showFind">
-    <ion-card-header>
-    <img src={{pd.image}}>
-    <ion-card-title>{{pd.title}}</ion-card-title>
-    <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
-    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
-  </ion-card-header>  
-  <ion-card-content>
-    {{pd.description}}
-  </ion-card-content>
-  </ion-card>
-
-
-</div>
- 
-</ion-content> -->
-
-
 <ion-header [translucent]="true">
   <ion-toolbar>
     <ion-title>
-      Kseries
+      <img width="100" height="50"
+        src="https://firebasestorage.googleapis.com/v0/b/bemyae-ec94f.appspot.com/o/Screen%20Shot%202564-03-09%20at%2018.02.19.png?alt=media&token=6506097b-58d7-4667-bc48-76c9871e41eb">
     </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="_popOver($event)">
@@ -77,14 +13,75 @@
 </ion-header>
 
 <ion-content>
-  <br><br><br><br><br><br><br><br><br><br><br><br><br>
+
+  <br><br>
   <div text-center>
     <center>
-      <ion-button color="secondary" shape="round" (click)="buttonClick('drama')">  drama  </ion-button>
-      <ion-button color="secondary" shape="round" (click)="buttonClick('action')">  action  </ion-button><br>
-      <ion-button color="secondary" shape="round" (click)="buttonClick('romance')">romance</ion-button>
-      <ion-button color="secondary" shape="round" (click)="buttonClick('comedy')">comedy</ion-button>
+      <h2>K series แอปพลิเคชัน</h2>
+      <h5>ที่จะพาคุณไปสัมผัสกับซีรีย์ที่มีคุณภาพของเกาหลี</h5>
     </center>   
-  </div>
-  
+  </div> 
+  <br><br>
+  <ion-card (click)="buttonClick('drama')">
+    ​
+    <ion-item color="tertiary" lines="none">
+      <ion-label>
+        <h1>Drama</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item color="tertiary" lines="none">
+      <ion-label>
+        ซีรีย์ที่จะพาคุณไปรู้ถึงเรื่องราวของชีวิต
+      </ion-label>
+    </ion-item>
+
+  </ion-card>
+  <ion-card (click)="buttonClick('romance')">
+    ​
+    <ion-item color="secondary" lines="none">
+      <ion-label>
+        <h1>Romance</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item color="secondary" lines="none">
+      <ion-label>
+        ซีรีย์ที่จะพาคุณไปพบกับเรื่องราวที่โรแมนติกสุดฟิน
+      </ion-label>
+    </ion-item>
+
+  </ion-card>
+  <ion-card (click)="buttonClick('action')">
+    ​
+    <ion-item color="danger" lines="none">
+      <ion-label>
+        <h1>
+          Action
+        </h1>
+      </ion-label>
+    </ion-item>
+    <ion-item color="danger"  lines="none">
+      ซีรีย์ที่จะพาคุณไปพบกับความตื่นเต้น
+    </ion-item>
+
+  </ion-card>
+
+  <ion-card  (click)="buttonClick('comedy')">
+    ​
+    <ion-item color="warning" lines="none">
+      <ion-label>
+        <h1>Comedy</h1>
+      </ion-label>
+    </ion-item>
+    <ion-item color="warning" lines="none">
+      <ion-label>
+        ซีรีย์ที่จะพาคุณไปพบกับความตลกขบขัน
+      </ion-label>
+    </ion-item>
+
+  </ion-card>
+
+
+
+
+
 </ion-content>

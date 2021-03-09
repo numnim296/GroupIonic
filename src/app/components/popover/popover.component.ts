@@ -4,6 +4,7 @@ import { AngularFireAuth } from "@angular/fire/auth";
 import {
 
   NavController,
+  AlertController
 
 } from "@ionic/angular";
 
@@ -18,6 +19,7 @@ export class PopoverComponent implements OnInit {
     private popCtrl: PopoverController,
     private afAuth: AngularFireAuth,
     private navCtrl: NavController,
+    public alertController: AlertController
     ) { }
 
   ngOnInit() {}
@@ -25,6 +27,30 @@ export class PopoverComponent implements OnInit {
     this.afAuth.signOut().then(data=>{
       this.navCtrl.navigateRoot("home");
     } )
+  }
+  async presentAlertConfirm() {
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'ยืนยันการออกจากระบบ!',
+      message: 'คุณต้องการออกจากระบบ',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            
+          }
+        }, {
+          text: 'ยืนยัน',
+          handler: () => {
+            this.LogOut()
+          }
+        }
+      ]
+    });
+
+    await alert.present();
   }
 
 }

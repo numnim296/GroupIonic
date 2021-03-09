@@ -228,8 +228,7 @@ onChangeType(e){
   
 }
 onChangeYear(e){
-  console.log('year => ',e);
-  
+  console.log('year => ',e);  
 }
 
 

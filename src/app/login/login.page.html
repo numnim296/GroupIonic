@@ -1,21 +1,32 @@
 <ion-header>
   <ion-toolbar>
-    <ion-title>ลงชื่อเข้าใช้</ion-title>
+    <ion-title>
+      <img width="100" height="50"
+        src="https://firebasestorage.googleapis.com/v0/b/bemyae-ec94f.appspot.com/o/Screen%20Shot%202564-03-09%20at%2018.02.19.png?alt=media&token=6506097b-58d7-4667-bc48-76c9871e41eb">
+    </ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <div text-center>
+    <center>
+      <h2>K series แอปพลิเคชัน</h2>
+      <h5>ลงชื่อเข้าใช้งาน</h5>
+      <p>มีเพียงผู้ดูแลระบบเท่านั้นที่สามารถเข้าสู่ระบบได้</p>
+    </center>   
+  </div> 
+  <br>
   <ion-card>
     <ion-card-content>
       <ion-item>
-        <ion-input placeholder="Username" [(ngModel)]="getUser"></ion-input>
+        <ion-input placeholder="ชื่อผู้ใช้งาน" [(ngModel)]="getUser"></ion-input>
       </ion-item>
       <ion-item>
-        <ion-input type="Password" maxlength="8" placeholder="Password"  [(ngModel)]="getPassword"></ion-input>
+        <ion-input type="Password" maxlength="8" placeholder="รหัสผ่าน"  [(ngModel)]="getPassword"></ion-input>
       </ion-item>
-      <ion-button expand="block" (click)="Login()">Login</ion-button>
+      <ion-button expand="block" color="tertiary" (click)="Login()">ลงชื่อเข้าใช้</ion-button>
 
-      <ion-button color="medium"  expand="block" (click)="back()">back</ion-button>
+      <ion-button color="medium"  expand="block" (click)="back()">กลับ</ion-button>
     </ion-card-content>
   </ion-card> 
 </ion-content>

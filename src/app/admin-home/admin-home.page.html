@@ -1,98 +1,10 @@
- <!-- <ion-header>
-  <ion-toolbar>
-    <ion-title>Admin BeMyAe</ion-title>
-    <ion-buttons slot="end">
-      <ion-button (click)="_popOver($event)">
-        <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
-      </ion-button>
-    </ion-buttons>
-  </ion-toolbar>
-</ion-header>
-
-<ion-content>
-  <ion-item>
-    <ion-input placeholder="กรอกชื่อผลิตภัณฑ์" [(ngModel)]="pd" (input)="findProduct($event)" name="pd" type="text"></ion-input>
- </ion-item>
- <ion-card *ngIf="!showYes">
-  <div text-center>
-    <center>
-      <br><br>
-      <img src="https://www.flaticon.com/svg/vstatic/svg/463/463612.svg?token=exp=1614920252~hmac=cf746f80bfa866ec238b56854916b4ae" width="100" height="100"><br><br>
-        ไม่พบสินค้านี้ในคลัง
-        <br><br>
-    </center>
-  </div>
- </ion-card>
-
- <ion-card *ngIf="showYes" >
-  <ion-card *ngFor="let pd of showFind">
-    <ion-card-header>
-    <img src={{pd.image}}>
-    <ion-card-title>{{pd.title}}</ion-card-title>
-    <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
-    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
-  </ion-card-header>  
-  <ion-card-content>
-    {{pd.description}}
-  </ion-card-content>
-  <div class="ion-text-end">
-    <ion-button  (click)="editProduct(pd)" color="warning">edit</ion-button>
-    <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
-  </div>
-  </ion-card>
-</ion-card>
-<ion-card *ngIf="!showYes" >
-  <ion-card *ngFor="let pd of allProduct">
-    <ion-card-header>
-    <img src={{pd.image}}>
-    <ion-card-title>{{pd.title}}</ion-card-title>
-    <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
-    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
-  </ion-card-header>  
-  <ion-card-content>
-    {{pd.description}}
-  </ion-card-content>
-  <div class="ion-text-end">
-    <ion-button  (click)="editProduct(pd)" color="warning">edit</ion-button>
-    <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
-  </div>
-  </ion-card>
-</ion-card>
-<ion-card *ngIf="showAll" >
-  <ion-card *ngFor="let pd of allProduct">
-    <ion-card-header>
-    <img src={{pd.image}}>
-    <ion-card-title>{{pd.title}}</ion-card-title>
-    <ion-card-subtitle>ขนาด {{pd.size}} ราคา {{pd.price}} บาท</ion-card-subtitle>
-    <ion-card-subtitle>บริษัท {{pd.company}}</ion-card-subtitle>    
-  </ion-card-header>  
-  <ion-card-content>
-    {{pd.description}}
-  </ion-card-content>
-  <div class="ion-text-end">
-    <ion-button  (click)="editProduct(pd)" color="warning">edit</ion-button>
-    <ion-button (click)="deleteProduct(pd)"  color="danger">delete</ion-button>
-  </div>
-  </ion-card>
-
-
-</ion-card>
-
-
-  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
-    <ion-fab-button (click)="addData()"> 
-      <ion-icon name="add"></ion-icon>
-    </ion-fab-button>
-  </ion-fab>
-  
-</ion-content>
-
- -->
-
 
  <ion-header>
   <ion-toolbar>
-    <ion-title>Admin BeMyAe</ion-title>
+    <ion-title>
+
+      <img width="100" height="50" src="https://firebasestorage.googleapis.com/v0/b/bemyae-ec94f.appspot.com/o/Screen%20Shot%202564-03-09%20at%2018.02.19.png?alt=media&token=6506097b-58d7-4667-bc48-76c9871e41eb">
+    </ion-title>
     <ion-buttons slot="end">
       <ion-button (click)="_popOver($event)">
         <ion-icon slot="icon-only" name="ellipsis-vertical-outline"></ion-icon>
@@ -114,12 +26,13 @@
     <p>{{sr.description}}</p>
   </ion-card-content>
   <div class="ion-text-end">
-    <ion-button  (click)="editSeries(sr)" color="warning">edit</ion-button>
-    <ion-button (click)="deleteProduct(sr)"  color="danger">delete</ion-button>
+    <ion-button  (click)="editSeries(sr)" color="warning">แก้ไข</ion-button>
+    <!-- <ion-button (click)="deleteProduct(sr)"  color="danger">delete</ion-button> -->
+    <ion-button (click)="presentAlertConfirm(sr)"  color="danger">ลบ</ion-button>
   </div>
 
   </ion-card>
-  <ion-fab  vertical="bottom" horizontal="end" slot="fixed">
+  <ion-fab color="tertiary"  vertical="bottom" horizontal="end" slot="fixed">
     <ion-fab-button (click)="addData()"> 
       <ion-icon name="add"></ion-icon>
     </ion-fab-button>

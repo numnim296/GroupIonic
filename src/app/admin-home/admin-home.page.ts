@@ -9,6 +9,7 @@ import {
   ToastController,
   LoadingController,
   NavController,
+  AlertController
 } from "@ionic/angular";
 
 
@@ -40,6 +41,7 @@ export class AdminHomePage implements OnInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
+    public alertController: AlertController
     ) { }
 
   ngOnInit() {
@@ -117,4 +119,31 @@ export class AdminHomePage implements OnInit {
 
     }
   }
+
+  async presentAlertConfirm(sr) {
+    console.log(sr)
+    const alert = await this.alertController.create({
+      cssClass: 'my-custom-class',
+      header: 'ยืนยันการลบ!',
+      message: 'คุณต้องการลบซีรีย์เรื่องนี้',
+      buttons: [
+        {
+          text: 'ยกเลิก',
+          role: 'cancel',
+          cssClass: 'secondary',
+          handler: (blah) => {
+            
+          }
+        }, {
+          text: 'ลบ',
+          handler: () => {
+            this.deleteProduct(sr)
+          }
+        }
+      ]
+    });
+
+    await alert.present();
+  }
+  
 }
