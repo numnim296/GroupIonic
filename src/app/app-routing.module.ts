@@ -19,7 +19,7 @@ const routes: Routes = [
     loadChildren: () => import('./login/login.module').then( m => m.LoginPageModule)
   },
   {
-    path: 'admin-home',
+    path: 'admin-home/:alldata',
     loadChildren: () => import('./admin-home/admin-home.module').then( m => m.AdminHomePageModule),
     canActivate:[AngularFireAuthGuard],
     data: { authGuardPipe: redirectUnauthorizedToLogin }
@@ -43,6 +43,12 @@ const routes: Routes = [
   {
     path: 'detail-series/:detail',
     loadChildren: () => import('./detail-series/detail-series.module').then( m => m.DetailSeriesPageModule)
+  },
+  {
+    path: 'admin-select',
+    loadChildren: () => import('./admin-select/admin-select.module').then( m => m.AdminSelectPageModule),
+    canActivate:[AngularFireAuthGuard],
+    data: { authGuardPipe: redirectUnauthorizedToLogin }
   },
  
 ];

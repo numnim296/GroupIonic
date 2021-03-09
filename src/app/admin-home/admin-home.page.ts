@@ -4,12 +4,12 @@ import { MenuController } from '@ionic/angular';
 import { PopoverController } from '@ionic/angular';
 import { PopoverComponent }  from 'src/app/components/popover/popover.component'
 import {AngularFirestore} from '@angular/fire/firestore';
-import { Router } from "@angular/router";
+import { Router,ActivatedRoute } from "@angular/router";
 import {
   ToastController,
   LoadingController,
   NavController,
-  AlertController
+  AlertController,
 } from "@ionic/angular";
 
 
@@ -31,6 +31,10 @@ export class AdminHomePage implements OnInit {
   showAll:string="yes";
 
   allSeries:any;
+  // listSelectYear:any;
+
+  // showAll:string = "show"
+  // selectValue:string;
 
   constructor(
     public menu: MenuController,
@@ -41,30 +45,34 @@ export class AdminHomePage implements OnInit {
     private toastCtrl: ToastController,
     private loadingCtrl: LoadingController,
     private navCtrl: NavController,
-    public alertController: AlertController
+    public alertController: AlertController,
+    public actroute: ActivatedRoute,
     ) { }
 
   ngOnInit() {
-    this.crudapi.readAllSeries().subscribe(data=>{
-      this.allSeries = data.map(e=>{
-        return {
-          id:e.payload.doc.id,
-          title:e.payload.doc.data()['title'.toString()],
-          description:e.payload.doc.data()['description'.toString()],
-          year:e.payload.doc.data()['year'.toString()],
-          ep:e.payload.doc.data()['ep'.toString()],
-          channel:e.payload.doc.data()['channel'.toString()],
-          type:e.payload.doc.data()['type'.toString()],
-          image:e.payload.doc.data()['image'.toString()],
-          actor:e.payload.doc.data()['actor'.toString()],
-          sday:e.payload.doc.data()['sday'.toString()],
-          eday:e.payload.doc.data()['eday'.toString()],
-          end:e.payload.doc.data()['end'.toString()],
-          time:e.payload.doc.data()['time'.toString()],
-        }
+    // this.crudapi.readAllSeries().subscribe(data=>{
+    //   this.allSeries = data.map(e=>{
+    //     return {
+    //       id:e.payload.doc.id,
+    //       title:e.payload.doc.data()['title'.toString()],
+    //       description:e.payload.doc.data()['description'.toString()],
+    //       year:e.payload.doc.data()['year'.toString()],
+    //       ep:e.payload.doc.data()['ep'.toString()],
+    //       channel:e.payload.doc.data()['channel'.toString()],
+    //       type:e.payload.doc.data()['type'.toString()],
+    //       image:e.payload.doc.data()['image'.toString()],
+    //       actor:e.payload.doc.data()['actor'.toString()],
+    //       sday:e.payload.doc.data()['sday'.toString()],
+    //       eday:e.payload.doc.data()['eday'.toString()],
+    //       end:e.payload.doc.data()['end'.toString()],
+    //       time:e.payload.doc.data()['time'.toString()],
+    //     }
         
-      })
-    })
+    //   })
+    // })
+    const dataRev = this.actroute.snapshot.paramMap.get('alldata');
+    this.allSeries = JSON.parse(dataRev);
+    console.log('admin hhh => ',JSON.parse(dataRev))
     
   }
   
@@ -114,9 +122,6 @@ export class AdminHomePage implements OnInit {
           this.showYes = "have";
         }
         
-    
-
-
     }
   }
 
@@ -145,5 +150,11 @@ export class AdminHomePage implements OnInit {
 
     await alert.present();
   }
+  back(){
+
+    this.navCtrl.pop()
+  }
+
+
   
 }

@@ -39,7 +39,7 @@ export class LoginPage implements OnInit {
 
       // show loader
       let loader = await this.loadingCtrl.create({
-        message: "Please wait..."
+        message: "กรุณารอสักครู่..."
       });
       loader.present();
 
@@ -47,10 +47,8 @@ export class LoginPage implements OnInit {
         // login user with email and password
         await this.afAuth.signInWithEmailAndPassword(this.getUser, this.getPassword)
           .then(data => {
-            console.log(data);
-
             // redirect to home page
-            this.navCtrl.navigateRoot("admin-home");
+            this.navCtrl.navigateRoot("admin-select");
           })
           .catch();
       } catch (e) {

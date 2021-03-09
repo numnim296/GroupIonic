@@ -24,7 +24,6 @@ export class SeriesPage implements OnInit {
   ngOnInit() {
     const dataRev = this.actroute.snapshot.paramMap.get('alldata');
     this.detailSeries = JSON.parse(dataRev);
-    console.log('hhhh => ',JSON.parse(dataRev))
   }
 
 

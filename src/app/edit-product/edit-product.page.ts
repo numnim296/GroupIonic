@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { NavController } from '@ionic/angular';
-import { ActivatedRoute } from '@angular/router';
+import { NavController, } from '@ionic/angular';
+import { ActivatedRoute,Router } from '@angular/router';
 
 import { finalize, tap } from 'rxjs/operators';
 import { Observable } from 'rxjs';
@@ -41,6 +41,7 @@ export class EditProductPage implements OnInit {
   channel:string;
   time:string
 
+  typeSend:string;
   typeSelectValue:string;
 
   yearSelectValue:string;
@@ -85,7 +86,8 @@ export class EditProductPage implements OnInit {
     (public navCtrl: NavController,
       public actroute: ActivatedRoute,
       private afs: AngularFirestore,
-      private afStorage: AngularFireStorage) {
+      private afStorage: AngularFireStorage,
+      public router: Router,) {
     this.isFileUploading = false;
     this.isFileUploaded = false;
 
@@ -99,6 +101,7 @@ export class EditProductPage implements OnInit {
   ngOnInit() {
     const dataRev = this.actroute.snapshot.paramMap.get('pd');
     this.detailProduct = JSON.parse(dataRev);
+    console.log('get from edit', JSON.parse(dataRev))
     this.getTitle = this.detailProduct['title'];
     this.getDescription = this.detailProduct['description'];
     // this.getPrice = this.detailProduct['price'];
@@ -116,6 +119,7 @@ export class EditProductPage implements OnInit {
     this.actor = this.detailProduct['actor'];
     this.time= this.detailProduct['time'];
     this.channel= this.detailProduct['channel'];
+    this.typeSend = this.detailProduct['type'];
     
 
 
@@ -213,10 +217,11 @@ updateProduct(){
   newDataProduct['time'] = this.time;
   newDataProduct['channel'] = this.channel;
   newDataProduct['year'] = this.yearSelectValue;
-  this.afs.doc('k-drama/' + this.IDProduct).update(newDataProduct).then(data=>{
-    this.navCtrl.navigateRoot("admin-home");
-  }
-    
+  console.log('err_ .',newDataProduct);
+  this.afs.doc('k-drama/' + this.IDProduct).update(newDataProduct).then(data=>{  
+    // this.router.navigate(["admin-home", this.typeSend]);
+    this.navCtrl.navigateRoot('admin-select')
+  }    
   )
 }
 
